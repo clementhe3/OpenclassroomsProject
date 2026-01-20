@@ -1,10 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-   <title></title>
-   <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Habitudes — Suivi quotidien</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-   <h1>Un super titre !</h1>
+  <main class="app">
+    <header class="app__header">
+      <div>
+        <p class="eyebrow">Suivi d'habitudes</p>
+        <h1>Construisez vos routines, un jour à la fois.</h1>
+        <p class="subtitle">Ajoutez vos habitudes, cochez vos réussites et suivez vos séries.</p>
+      </div>
+      <div class="stats">
+        <div>
+          <p class="stat__label">Habitudes actives</p>
+          <p class="stat__value" id="active-count">0</p>
+        </div>
+        <div>
+          <p class="stat__label">Complétées aujourd'hui</p>
+          <p class="stat__value" id="done-count">0</p>
+        </div>
+        <div>
+          <p class="stat__label">Meilleure série</p>
+          <p class="stat__value" id="best-streak">0</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2>Ajouter une habitude</h2>
+      <form id="habit-form">
+        <label>
+          Nom de l'habitude
+          <input type="text" id="habit-name" placeholder="Ex: Lire 20 minutes" required maxlength="50">
+        </label>
+        <label>
+          Fréquence
+          <select id="habit-frequency">
+            <option value="Quotidien">Quotidien</option>
+            <option value="3x / semaine">3x / semaine</option>
+            <option value="Hebdomadaire">Hebdomadaire</option>
+          </select>
+        </label>
+        <button type="submit">Ajouter</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="panel__header">
+        <h2>Vos habitudes</h2>
+        <button class="ghost" id="reset-day">Réinitialiser la journée</button>
+      </div>
+      <div id="habit-list" class="habit-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <template id="habit-template">
+    <article class="habit-card">
+      <div class="habit-card__info">
+        <h3 class="habit-card__title"></h3>
+        <p class="habit-card__meta"></p>
+      </div>
+      <div class="habit-card__actions">
+        <button class="toggle">Marquer fait</button>
+        <button class="remove" aria-label="Supprimer">Supprimer</button>
+      </div>
+      <p class="habit-card__streak"></p>
+    </article>
+  </template>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
